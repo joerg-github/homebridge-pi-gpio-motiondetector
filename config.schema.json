@@ -11,7 +11,7 @@
         "required": true,
         "default": "Motion Sensor"
       },
-      "pinMotionDetected" {
+      "pinMotionDetected": {
         "title": "Pin Number",
         "type": "number",
         "required": true
