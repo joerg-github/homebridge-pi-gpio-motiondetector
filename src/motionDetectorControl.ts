@@ -1,7 +1,7 @@
 import { MotionDetectorConfig } from './motionDetectorConfig';
 import { Logging } from 'homebridge';
-import { EventEmitter } from '../node_modules/hap-nodejs/dist/lib/EventEmitter';
 import { Gpio, BinaryValue } from 'onoff';
+import EventEmitter from 'events';
 
 enum PinLogicalState {
     OFF = 0,
@@ -10,7 +10,12 @@ enum PinLogicalState {
 
 const PinLogicalStateStr: string[] = ['OFF', 'ON'];
 
-export class MotionDetectorControl {
+
+export declare const enum MotionDetectorControlEventTypes {
+  CHANGE = 'change'
+}
+
+export class MotionDetectorControl extends EventEmitter {
 
   private _motionDetected = false;
   private gpioSensorMotionDetected: Gpio | undefined;
@@ -39,11 +44,14 @@ export class MotionDetectorControl {
   }
 
   public set motionDetected(value) {
-    this._motionDetected = value;
+    if (this._motionDetected !== value) {
+      this._motionDetected = value;
+      this.emit(MotionDetectorControlEventTypes.CHANGE);
+    }
   }
 
   constructor(private log: Logging, private config: MotionDetectorConfig) {
-    //super();
+    super();
 
     log.info('Initializing MotionDetectorControl');
 
