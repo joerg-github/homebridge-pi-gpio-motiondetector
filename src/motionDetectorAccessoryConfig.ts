@@ -16,8 +16,8 @@ export class MotionDetectorAccessoryConfig implements MotionDetectorConfig {
     log.info('Initializing GarageDoorAccessoryConfig!', config);
     this.name = config.name;
 
-    this.pinMotionDetected = config.pinMotionDetected;
-    this.pinSupplyGND = config.pinSupplyGND;
-    this.pinSupplyVCC = config.pinSupplyVCC;
+    this.pinMotionDetected = config.pinMotionDetected ? config.pinMotionDetected : 13;
+    this.pinSupplyGND = config.pinSupplyGND ? config.pinSupplyGND : 19;
+    this.pinSupplyVCC = config.pinSupplyVCC ? config.pinSupplyVCC : 26;
   }
 }
