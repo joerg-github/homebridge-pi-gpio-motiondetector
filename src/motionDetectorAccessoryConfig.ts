@@ -13,7 +13,7 @@ export class MotionDetectorAccessoryConfig implements MotionDetectorConfig {
 
   constructor(log: Logging, config: AccessoryConfig) {
 
-    log.info('Initializing GarageDoorAccessoryConfig!', config);
+    log.info('Initializing MotionDetectorAccessoryConfig!', config);
     this.name = config.name;
 
     this.pinMotionDetected = config.pinMotionDetected ? config.pinMotionDetected : 13;
