@@ -19,6 +19,8 @@ export class MotionDetectorControl extends EventEmitter {
 
   private _motionDetected = false;
   private gpioSensorMotionDetected: Gpio | undefined;
+  private gpioSupplyGND: Gpio | undefined;
+  private gpioSupplyVCC: Gpio | undefined;
 
   private pinChanged(pin: number, value: BinaryValue) {
     this.log.debug('pinChanged: pin: %s, state: %s', pin, PinLogicalStateStr[value]);
@@ -62,9 +64,16 @@ export class MotionDetectorControl extends EventEmitter {
         log.debug('gpio pin %s used as pinMotionDeteced', config.pinMotionDetected);
 
         this.gpioSensorMotionDetected = new Gpio(config.pinMotionDetected, 'in', 'both', {debounceTimeout: 1000});
+        this.gpioSensorMotionDetected.setActiveLow(true);
         this.gpioSensorMotionDetected.watch((err, value) => {
           this.pinChanged(config.pinMotionDetected as number, value);
         });
+
+        this.gpioSupplyGND = new Gpio(config.pinSupplyGND, 'out');
+        this.gpioSupplyGND.writeSync(PinLogicalState.OFF);
+
+        this.gpioSupplyVCC = new Gpio(config.pinSupplyVCC, 'out');
+        this.gpioSupplyVCC.writeSync(PinLogicalState.ON);
       }
     }
   }
