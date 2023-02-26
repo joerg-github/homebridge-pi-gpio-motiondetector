@@ -15,6 +15,14 @@
         "title": "Pin Number",
         "type": "number",
         "required": true
+      },
+      "pinSupplyGND": {
+        "title": "Power Supply GND Pin",
+        "type": "number"
+      },
+      "pinSupplyVCC": {
+        "title": "Power Supply VCC Pin",
+        "type": "number"
       }
     }
   }
