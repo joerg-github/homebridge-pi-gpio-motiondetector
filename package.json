@@ -2,7 +2,7 @@
   "private": true,
   "displayName": "Motion detector",
   "name": "homebridge-pi-gpio-motiondetector",
-  "version": "1.0.1‚",
+  "version": "1.0.2‚",
   "description": "Homebridge plugin to process the input of a GPIO pins on a Reaspberry Pi as motion detector/sensoer",
   "license": "Apache-2.0",
   "repository": {

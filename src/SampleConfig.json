@@ -1,7 +1,5 @@
 {
     "accessory": "MotionDetector",
     "name": "StreetSensor",
-    "pinMotionDetected": 13,
-    "pinSupplyGND": 19,
-    "pinSupplyVCC": 26
+    "pinMotionDetected": 19
 }
